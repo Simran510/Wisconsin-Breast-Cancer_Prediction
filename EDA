@@ -1,0 +1,53 @@
+🧪 Exploratory Data Analysis (EDA)
+The dataset is analyzed to understand feature distributions, class balance, correlation, and potential data issues before modeling.
+
+🔍 Basic Information
+Total Records: 569
+Target Classes:
+M (Malignant)
+B (Benign)
+Features: 30 real-valued measurements (e.g., radius, texture, smoothness)
+
+📊 Class Distribution
+python
+Copy
+Edit
+df['diagnosis'].value_counts()
+Benign: 357
+Malignant: 212
+
+📉 Imbalance exists — evaluation metrics like ROC-AUC and Recall are crucial.
+
+🧩 Missing Values
+python
+Copy
+Edit
+df.isnull().sum().any()
+✅ No missing values found
+
+📈 Correlation Heatmap
+Features such as radius_mean, area_mean, and perimeter_mean show high correlation with diagnosis.
+
+python
+Copy
+Edit
+sns.heatmap(df.corr(), annot=False, cmap="coolwarm")
+📦 Boxplots by Diagnosis
+Boxplots of features (e.g., radius_mean, texture_mean) show clear separation between benign and malignant classes, indicating strong predictive potential.
+
+python
+Copy
+Edit
+sns.boxplot(x='diagnosis', y='radius_mean', data=df)
+📉 Feature Distributions
+Histograms show that some features are skewed and may benefit from standardization.
+
+python
+Copy
+Edit
+df.hist(figsize=(15, 10), bins=30)
+✅ Summary of EDA Findings
+No missing values or categorical encoding issues
+Class imbalance is present (more benign cases)
+Some features are highly correlated (good for models like Logistic Regression)
+Feature scaling is essential due to varying units and ranges
